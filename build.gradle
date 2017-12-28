@@ -10,6 +10,7 @@ buildscript {
 	}
 }
 
+apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -18,11 +19,14 @@ group = 'com.andreiradzetski'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+war {
+	archiveName = "${baseName}##${version}.war"
+}
+
 repositories {
 	mavenLocal()
 	mavenCentral()
 }
-
 
 dependencies {
 	compile ('com.oracle:ojdbc6:11.2.0.4')
@@ -33,4 +37,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+
+	// comment for using spring-boot-starter-tomcat
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
