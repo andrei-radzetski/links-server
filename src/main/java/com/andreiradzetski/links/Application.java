@@ -10,17 +10,15 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * @since 28.12.2017
  */
 @SpringBootApplication
-public class ExternalServerApplication extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-
-    return application.sources(ExternalServerApplication.class);
+    return application.sources(Application.class);
   }
 
   public static void main(String[] args) {
-
-    SpringApplication.run(ExternalServerApplication.class, args);
+    SpringApplication.run(Application.class, args);
   }
 
 }

@@ -1,5 +1,7 @@
 package com.andreiradzetski.links.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 
 /**
@@ -9,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERMISSIONS")
 @SequenceGenerator(name = "PERMISSIONS_SEQ", sequenceName = "PERMISSIONS_SEQ", allocationSize = 1)
-public class Permission implements Domain {
+public class Permission implements Domain, GrantedAuthority {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERMISSIONS_SEQ")
@@ -49,4 +51,8 @@ public class Permission implements Domain {
     this.role = role;
   }
 
+  @Override
+  public String getAuthority() {
+    return role.name();
+  }
 }
