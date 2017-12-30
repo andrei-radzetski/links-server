@@ -9,12 +9,12 @@ import javax.persistence.*;
  * @since 10.12.2017
  */
 @Entity
-@Table(name = "PERMISSIONS")
-@SequenceGenerator(name = "PERMISSIONS_SEQ", sequenceName = "PERMISSIONS_SEQ", allocationSize = 1)
-public class Permission implements Domain, GrantedAuthority {
+@Table(name = "AUTHORITIES")
+@SequenceGenerator(name = "AUTHORITIES_SEQ", sequenceName = "AUTHORITIES_SEQ", allocationSize = 1)
+public class Authority implements Domain, GrantedAuthority {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERMISSIONS_SEQ")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUTHORITIES_SEQ")
   private Long id;
 
   @ManyToOne(optional = false)
@@ -55,4 +55,5 @@ public class Permission implements Domain, GrantedAuthority {
   public String getAuthority() {
     return role.name();
   }
+
 }

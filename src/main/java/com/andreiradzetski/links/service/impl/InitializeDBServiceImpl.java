@@ -1,6 +1,6 @@
 package com.andreiradzetski.links.service.impl;
 
-import com.andreiradzetski.links.model.Permission;
+import com.andreiradzetski.links.model.Authority;
 import com.andreiradzetski.links.model.Role;
 import com.andreiradzetski.links.model.User;
 import com.andreiradzetski.links.service.InitializeDBService;
@@ -43,46 +43,50 @@ public class InitializeDBServiceImpl implements InitializeDBService {
   public void createAdmin() {
 
     final User user = new User();
-    final Permission permissionAdmin = new Permission();
-    final Permission permissionActuator = new Permission();
-    final Permission permissionUser = new Permission();
+    final Authority authorityAdmin = new Authority();
+    final Authority authorityActuator = new Authority();
+    final Authority authorityUser = new Authority();
 
-    permissionAdmin.setRole(Role.ADMIN);
-    permissionAdmin.setUser(user);
+    authorityAdmin.setRole(Role.ADMIN);
+    authorityAdmin.setUser(user);
 
-    permissionActuator.setRole(Role.ACTUATOR);
-    permissionActuator.setUser(user);
+    authorityActuator.setRole(Role.ACTUATOR);
+    authorityActuator.setUser(user);
 
-    permissionUser.setRole(Role.USER);
-    permissionUser.setUser(user);
+    authorityUser.setRole(Role.USER);
+    authorityUser.setUser(user);
 
-    user.setLogin("admin");
+    user.setEmail("admin@links.com");
+    user.setUsername("admin");
     user.setPassword("admin");
-    user.getPermissions().add(permissionAdmin);
-    user.getPermissions().add(permissionActuator);
-    user.getPermissions().add(permissionUser);
+    user.setName("Admin");
+    user.getAuthorities().add(authorityAdmin);
+    user.getAuthorities().add(authorityActuator);
+    user.getAuthorities().add(authorityUser);
 
     userService.save(user);
 
-    logger.info("User with login \"{}\" was created.", user.getLogin());
+    logger.info("User with username \"{}\" was created.", user.getUsername());
   }
 
   @Override
   public void createUser() {
 
     final User user = new User();
-    final Permission permissionUser = new Permission();
+    final Authority authorityUser = new Authority();
 
-    permissionUser.setRole(Role.USER);
-    permissionUser.setUser(user);
+    authorityUser.setRole(Role.USER);
+    authorityUser.setUser(user);
 
-    user.setLogin("user");
+    user.setEmail("user@links.com");
+    user.setUsername("user");
     user.setPassword("user");
-    user.getPermissions().add(permissionUser);
+    user.setName("User");
+    user.getAuthorities().add(authorityUser);
 
     userService.save(user);
 
-    logger.info("User with login \"{}\" was created.", user.getLogin());
+    logger.info("User with username \"{}\" was created.", user.getUsername());
   }
 
 }

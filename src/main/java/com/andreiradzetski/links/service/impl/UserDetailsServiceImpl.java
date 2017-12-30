@@ -32,9 +32,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       throw new UsernameNotFoundException(username);
     }
 
-    Hibernate.initialize(user.getPermissions());
+    Hibernate.initialize(user.getAuthorities());
 
-    return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), user.getPermissions());
+    return user;
   }
 
 }
